@@ -17,23 +17,32 @@ namespace Bite
                 {
                     byte[] code = File.ReadAllBytes(args[0]);
                 }
-                catch (FileNotFoundException e)
-                {
-                    Error("File \"" + args[0] + "\" not found!" + Environment.NewLine + e.Message);
-                }
                 catch (Exception e)
                 {
-                    Error(e.Message);
+                    WriteException(e.Message);
                 }
             }
 
             Console.ReadLine();
         }
 
-        private static void Error(string errormsg)
+        private static void WriteError(string errmsg)
         {
-            Console.WriteLine("Error: " + errormsg);
+            Exit("---- Fatal Error ----" + Environment.NewLine + errmsg);
+        }
+
+        private static void WriteException(string excmsg)
+        {
+            Exit("---- Fatal Exception ----" + Environment.NewLine + excmsg);
+        }
+
+        private static void Exit(string msg)
+        {
+            Console.WriteLine(msg);
+            Console.Write(Environment.NewLine + "Press ENTER to exit...");
             Console.ReadLine();
+
+            Environment.Exit(1);
         }
     }
 }
