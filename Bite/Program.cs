@@ -16,14 +16,21 @@ namespace Bite
                 try
                 {
                     byte[] code = File.ReadAllBytes(args[0]);
+
+                    // Process the code
+
+                    // Let the user see the output
+                    Console.ReadLine();
                 }
                 catch (Exception e)
                 {
                     WriteException(e.Message);
                 }
             }
-
-            Console.ReadLine();
+            else
+            {
+                WriteError("Invalid arguments!");
+            }
         }
 
         private static void WriteError(string errmsg)
